@@ -1,0 +1,52 @@
+[
+  {
+    "type": "impl",
+    "name": "SimpleContract",
+    "interface_name": "simple::ISimpleContract"
+  },
+  {
+    "type": "interface",
+    "name": "simple::ISimpleContract",
+    "items": [
+      {
+        "type": "function",
+        "name": "add_one",
+        "inputs": [],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "get_num",
+        "inputs": [],
+        "outputs": [{ "type": "core::integer::u8" }],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_owner",
+        "inputs": [],
+        "outputs": [
+          { "type": "core::starknet::contract_address::ContractAddress" }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "constructor",
+    "name": "constructor",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "simple::SimpleContract::Event",
+    "kind": "enum",
+    "variants": []
+  }
+]

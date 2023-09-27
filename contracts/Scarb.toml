@@ -1,0 +1,19 @@
+[package]
+name = "contracts"
+version = "0.1.0"
+
+# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest.html
+
+[dependencies]
+snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.6.0" }
+starknet = "2.2.0"
+
+[tool.sncast]
+account = "~/.starknet_accounts/my_test_account.json"
+keystore = "~/.starkli-wallets/my_test_key.json"
+url = "https://starknet-goerli.infura.io/v3/2f57c80fb95b4fb38725aea62bc77c1d"
+
+
+[[target.starknet-contract]]
+casm = true
+# foo = { path = "vendor/foo" }
