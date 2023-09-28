@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function GetBalance({ starknet, token, currentBalance, setCurrentBalance }) {
-  async function handleGetCurrentBalance() {
-    try {
-      const userAddress = await starknet.account.address;
-      const response = await token.balance_of(userAddress);
-      const responseString = response.toString();
-      const value = responseString.slice(0, -1);
-      setCurrentBalance(value);
-    } catch (error) {
-      console.error("Error getting current balance:", error);
+  useEffect(() => {
+    async function fetchBalance() {
+      try {
+        const userAddress = await starknet.account.address;
+        const response = await token.balance_of(userAddress);
+        const responseString = response.toString();
+        const value = responseString.slice(0, -1);
+        setCurrentBalance(value);
+      } catch (error) {
+        console.error("Error getting current balance:", error);
+      }
     }
-  }
+
+    fetchBalance();
+  }, [starknet, token, setCurrentBalance]); // useEffect's dependency array
 
   return (
-    <>
-      <button onClick={handleGetCurrentBalance}>Get current number</button>
-      {currentBalance !== null && <p>Current Balance: {currentBalance}</p>}
-    </>
+    <>{currentBalance !== null && <p>Current Balance: {currentBalance}</p>}</>
   );
 }
 
