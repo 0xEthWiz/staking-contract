@@ -99,7 +99,9 @@ mod erc_20 {
         }
 
         fn mint_self(ref self: ContractState, amount: u256) {
+            assert(amount < 1000, 'greater than permitted amount');
             let caller: ContractAddress = get_caller_address();
+            let new_balance: u256 = self.balances.read(caller) + amount;
             self.balances.write(caller, amount);
         }
 
